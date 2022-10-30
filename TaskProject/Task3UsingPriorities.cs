@@ -36,7 +36,7 @@ namespace TaskProject
                 List<string> operList = strArr.Where((x, i) => i % 2 == 1 && x.Length == 1).ToList();
                 List<double> numList = strArr.Where((y, i) => i % 2 == 0).Select(x => getNum(x)).ToList();
                 if (operList.Count != numList.Count - 1)
-                    throw new TasksException("В качестве операций не могут использоваться только строки из одного символа");
+                    throw new TasksException("В качестве операций могут использоваться только строки из одного символа");
 
                 // Цикл по приоритетам операций
                 foreach (string opers in operatorsSorted)
@@ -66,7 +66,7 @@ namespace TaskProject
                 // Если это не так, то какие-то операции не удалось распознать.
                 if (numList.Count != 1)
                 {
-                    string errMes = "В качестве операций не могут использоваться символы";
+                    string errMes = "В качестве операций не могут использоваться символы:";
                     foreach (var s in operList)
                         errMes += " " + s;
                     throw new TasksException(errMes);
@@ -89,7 +89,7 @@ namespace TaskProject
         private static double getNum(string str)
         {
             if (!int.TryParse(str, out int num))
-                throw new TasksException($"Строка не является целым числом");
+                throw new TasksException($"Строка {str} не является целым числом");
             return (double)num;
         }
 
