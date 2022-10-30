@@ -8,14 +8,14 @@ namespace TestProject
     public class Task1Test
     {
         [TestMethod]
-        public void TestMethod1()
+        public void String1Test()
         {
             string res = Task1.DefineCommonStart("abc abcd abe abk");
             Assert.AreEqual("ab", res);
         }
 
         [TestMethod]
-        public void TestMethod2()
+        public void String2Test()
         {
             string res = Task1.DefineCommonStart("abc dfg tyu yui");
             Assert.AreEqual("-", res);

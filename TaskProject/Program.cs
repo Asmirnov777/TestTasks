@@ -4,7 +4,6 @@ namespace TaskProject
 {
     class Program
     {
-
         static void Main(string[] args)
         {
             string inStr = Console.ReadLine();

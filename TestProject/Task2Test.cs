@@ -8,14 +8,14 @@ namespace TestProject
     public class Task2Test
     {
         [TestMethod]
-        public void TestMethod1()
+        public void String1Test()
         {
             double res = Task2.CalculateSum("gf5k 35yt hf 2 fd12k");
             Assert.AreEqual(54, res);
         }
 
         [TestMethod]
-        public void StartEndTest()
+        public void NumbersAtStartAndEndTest()
         {
             double res = Task2.CalculateSum("35yt hf 2 fd-12.55");
             Assert.AreEqual(24.45, res);
