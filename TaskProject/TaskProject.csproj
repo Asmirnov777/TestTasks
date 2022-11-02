@@ -38,10 +38,8 @@
     <Compile Include="Task3.cs" />
     <Compile Include="Singleton.cs" />
     <Compile Include="Task1.cs" />
-    <Compile Include="Task3OnePass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Task2.cs" />
-    <Compile Include="Task3UsingPriorities.cs" />
     <Compile Include="TasksException.cs" />
   </ItemGroup>
   <ItemGroup>

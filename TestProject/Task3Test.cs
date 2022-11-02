@@ -10,93 +10,72 @@ namespace TestProject
         [TestMethod]
         public void ExpressionTest1()
         {
-            goodTestTemplate("3 + 8 * 5", 43.0);
+            string[] strArray = "+ 3 * 8 5".Split(' ');
+            double res = Task3.CalculateExpression(strArray);
+            Assert.AreEqual(43.0, res);
         }
 
         [TestMethod]
         public void ExpressionTest2()
         {
-            goodTestTemplate("3 + 8 * 5 / 2 - 8 + 4 * -4", -1.0);
+            string[] strArray = "+ - + 3 / * 8 5 2 8 * 4 -4".Split(' ');
+            double res = Task3.CalculateExpression(strArray);
+            Assert.AreEqual(-1.0, res);
         }
 
         [TestMethod]
         public void ExpressionTest3()
         {
-            goodTestTemplate("-5 * 4 / 2 * 3 + 8 * 3 + -200", -206.0);
+            string[] strArray = "+ + * / * -5 4 2 3 * 8 3 -200".Split(' ');
+            double res = Task3.CalculateExpression(strArray);
+            Assert.AreEqual(-206.0, res);
         }
 
         [TestMethod]
         public void OneNumberTest()
         {
-            goodTestTemplate("3", 3.0);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(TasksException))]
-        public void TwoOperatorsTogetherTest()
-        {
-            tasksExceptionTestTemplate("3 + 8 * 5 / 2 - 8 + 4 * - 4");
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(TasksException))]
-        public void TwoOperatorsInOneStringTest()
-        {
-            tasksExceptionTestTemplate("3 + 8 * 5 / 2 - 8 + 4 * - 4");
+            string[] strArray = "3".Split(' ');
+            double res = Task3.CalculateExpression(strArray);
+            Assert.AreEqual(3.0, res);
         }
 
         [TestMethod]
         [ExpectedException(typeof(TasksException))]
         public void NotIntegerNumberTest()
         {
-            tasksExceptionTestTemplate("-2.5 * 4 / 2 * 3 + 8 * 3 + -200");
+            string[] strArray = "* -2.5 4".Split(' ');
+            double res = Task3.CalculateExpression(strArray);
         }
 
         [TestMethod]
         [ExpectedException(typeof(TasksException))]
         public void OneOperatorTest()
         {
-            tasksExceptionTestTemplate("+");
+            string[] strArray = "+".Split(' ');
+            double res = Task3.CalculateExpression(strArray);
         }
 
         [TestMethod]
         [ExpectedException(typeof(TasksException))]
         public void WrongOperatorTest()
         {
-            tasksExceptionTestTemplate("3 % 4");
+            string[] strArray = "% 3 4".Split(' ');
+            double res = Task3.CalculateExpression(strArray);
         }
 
         [TestMethod]
         [ExpectedException(typeof(TasksException))]
-        public void TwoNumbersTogetherTest()
+        public void NullStringTest()
         {
-            tasksExceptionTestTemplate("-68 + 3 67 * 4");
+            double res = Task3.CalculateExpression(null);
         }
 
-        private Task3 task3UsingPriorities = new Task3UsingPriorities(),
-                      task3OnePass = new Task3OnePass();
 
-        private void goodTestTemplate(string str, double expectedRes)
+        [TestMethod]
+        [ExpectedException(typeof(TasksException))]
+        public void NullLengthStringTest()
         {
-            string[] strArray = str.Split(' ');
-            double res = task3UsingPriorities.CalculateExpression(strArray);
-            Assert.AreEqual(expectedRes, res);
-            res = task3OnePass.CalculateExpression(strArray);
-            Assert.AreEqual(expectedRes, res);
-        }
-
-        private void tasksExceptionTestTemplate(string str)
-        {
-            string[] strArray = str.Split(' ');
-            try
-            {
-                task3UsingPriorities.CalculateExpression(strArray);
-            }
-            catch (TasksException)
-            {
-                task3OnePass.CalculateExpression(strArray);
-            }
-            Assert.Fail();
+            double res = Task3.CalculateExpression(new string[] { });
         }
     }
 }
